@@ -1,0 +1,213 @@
+* {
+    background-color: #1f1f1f;
+    box-sizing: border-box;
+  }
+
+  /* ------------------------------------- */
+/* Scrollbar styling. from W3 School. */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #111; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fa2d48; 
+  border-radius: 10px;
+}
+/* ------------------------------------- */
+
+ hr {
+     margin: 0;
+     border-radius: 20px;
+    border: 3px solid #111;
+  } 
+
+  i {
+      display: flex;
+      justify-self: center;
+      padding: 5px;
+      color: #fa2d48;
+      opacity: 0.2;
+  }
+
+  i:hover {
+    opacity: 1;
+  }
+
+  .header1 {
+      display: flex;
+      justify-content: center;
+      color: #f4f4f4;
+      border-right: 3px solid #fa2d48;
+      border-left: 3px solid #fa2d48;
+      border-radius: 20px;
+
+    }
+th[scope="col"] {
+    background-color: #fa2d48;
+    color: #fff;
+}
+
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+    color: #f4f4f4;
+}
+
+
+td {
+    text-align: center;
+    color: #f4f4f4;
+}
+
+table {
+    border: 2px solid #f4f4f4;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    font-size: .8rem;
+}
+
+main {
+    padding-left: 16%;
+    padding-right: 5%;
+    padding-top: 2.5%;
+}
+
+.wrapper {
+    background-color:#f4f4f4;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+  }
+  .form-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: .5em;
+  }
+  .form-row > label {
+      flex: 0.4;
+      align-content: center;
+      color: #f4f4f4;
+  }
+  .form-row > input {
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    flex: 1;
+    height: 3em;
+    text-align: center;
+  }
+
+#myInput {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 37%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  
+
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding-top: 20px;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+}
+
+.changePass {
+    cursor: pointer;
+    height: 45px;
+    width: 200px;
+    color: #f4f4f4;
+    border-radius: 10px;
+    border-color: #1f1f1f;
+    background-color: black;
+    outline: none;
+}
+
+.changePassRow {
+    display: flex;
+    padding: .5em;
+}
+
+.changePassRow h5 {
+    padding-right: 10px;
+    color: #f4f4f4;
+}
+
+.submitbutton {
+    cursor: pointer;
+ height: 45px;
+ width: 200px;
+ color: white;
+ border-radius: 10px;
+ border-color: #1f1f1f;
+ background-color: #fa2d48;
+ outline: none;
+}
+  
+  
+nav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+.link {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    background-color: #111;
+}
+
+.logout {
+    cursor: pointer;
+    background-color: #fa2d48;
+    color: aliceblue;
+    border: #fff;
+    border-radius: 20px;
+    text-align: center;
+    margin: 10px;
+}
+  
+  .clicked {
+    background-color: #1f1f1f;
+  }
+  
+  nav a:hover {
+    color: #f4f4f4;
+  }
+
+  label.error.fail-alert {
+    border: 2px solid red;
+    border-radius: 4px;
+    line-height: 1;
+    padding: 2px 0 6px 6px;
+}
+
+input.valid.success-alert {
+border: 2px solid #4CAF50;
+color: green;
+}
