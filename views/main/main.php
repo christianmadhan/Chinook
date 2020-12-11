@@ -11,9 +11,9 @@
 <body>
     <nav>
         <a class="link clicked">Home</a>
-        <a class="link"href="http://localhost/apps/phpvariables/views/profile/profile.php">Profile</a>
-        <a class="link" href="http://localhost/apps/phpvariables/views/browse/browse.php">Browse</a>
-        <a class="link" href="http://localhost/apps/phpvariables/views/cart/cart.php">Cart</a>
+        <a class="link"href="http://localhost/apps/Chinook/views/profile/profile.php">Profile</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/browse/browse.php">Browse</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/cart/cart.php">Cart</a>
         <a class="link logout" id="logout">Logout</a>
     </nav>
     <main>

@@ -51,7 +51,7 @@ $('#loginBtn').on('click', function(e) {
         "Email": $('#email').val(),
         "Password": $('#password').val(),
      }
-     var url = "http://localhost/apps/phpvariables/controller/auth/login.php";
+     var url = "http://localhost/apps/Chinook/controller/auth/login.php";
      $.ajax({
          type: "POST",
          url: url,
@@ -64,7 +64,7 @@ $('#loginBtn').on('click', function(e) {
             200: (response) => {
                 $('#unauthorized').hide();
                 sessionStorage.setItem('auth', response);
-                window.location.href = "http://localhost:/apps/phpvariables/views/main/main.php";
+                window.location.href = "http://localhost:/apps/Chinook/views/main/main.php";
             }
           }
        }).done((response) => {
@@ -81,7 +81,7 @@ $('#adminloginBtn').on('click', function() {
         "email": $('#password').val(),
      }
 
-     var url = "http://localhost/apps/phpvariables/controller/auth/login.php";
+     var url = "http://localhost/apps/Chinook/controller/auth/login.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -123,7 +123,7 @@ $('#SignUpForm').on('click', function(e) {
          "Password": $('#singUpPassword').val(),
          "RepeatPassword": $('#singUpRepeatPassword').val(),
       }      
-      var url = "http://localhost/apps/phpvariables/controller/auth/newuser.php";
+      var url = "http://localhost/apps/Chinook/controller/auth/newuser.php";
       $.ajax({
           type: "POST",
           url: url,
@@ -136,7 +136,7 @@ $('#SignUpForm').on('click', function(e) {
              200: (response) => {
                  $('#unauthorized').hide();
                  sessionStorage.setItem('auth', response);
-                 window.location.href = "http://localhost:/apps/phpvariables/views/main/main.php";
+                 window.location.href = "http://localhost:/apps/Chinook/views/main/main.php";
              }
            }
         }).done((response) => {

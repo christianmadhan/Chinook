@@ -11,10 +11,10 @@
 </head> 
 <body>
     <nav>
-        <a class="link" href="http://localhost/apps/phpvariables/views/main/main.php">Home</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/main/main.php">Home</a>
         <a class="link clicked">Profile</a>
-        <a class="link" href="http://localhost/apps/phpvariables/views/browse/browse.php">Browse</a>
-        <a class="link" href="http://localhost/apps/phpvariables/views/cart/cart.php">Cart</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/browse/browse.php">Browse</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/cart/cart.php">Cart</a>
         <a class="link logout" id="logout">Logout</a>
 
     </nav>

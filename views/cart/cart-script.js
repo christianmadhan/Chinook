@@ -1,8 +1,8 @@
 $( document ).ready(() => {
     if(sessionStorage.getItem('auth') == null){
-        location.href = "http://localhost/apps/phpvariables/index.php";
+        location.href = "http://localhost/apps/Chinook/index.php";
     } else {
-        var url = "http://localhost/apps/phpvariables/controller/cart/get-cart.php";
+        var url = "http://localhost/apps/Chinook/controller/cart/get-cart.php";
         data = {
             auth: sessionStorage.getItem("auth")
         }
@@ -16,7 +16,7 @@ $( document ).ready(() => {
                    console.log(res);
                     sessionStorage.clear();
                    alert('Your session Has expired, please log in again.');
-                   location.href = "http://localhost/apps/phpvariables/index.php";
+                   location.href = "http://localhost/apps/Chinook/index.php";
                },
                200: (response) => {
                    var totalPrice = 0.0;
@@ -63,7 +63,7 @@ $( document ).ready(() => {
 $('#buyBtn').on('click', function(){
     if($('#billingInfo').valid()){
         $('#purchasedModal').show();
-        var url = "http://localhost/apps/phpvariables/controller/cart/purchase.php";
+        var url = "http://localhost/apps/Chinook/controller/cart/purchase.php";
         data = {
             auth: sessionStorage.getItem("auth"),
             Total: $('#buyBtn').attr('total'),
@@ -83,7 +83,7 @@ $('#buyBtn').on('click', function(){
                    console.log(res);
                     sessionStorage.clear();
                    alert('Your session Has expired, please log in again.');
-                   location.href = "http://localhost/apps/phpvariables/index.php";
+                   location.href = "http://localhost/apps/Chinook/index.php";
                },
               500: (response) => {
                 $('#loader').hide();
@@ -110,7 +110,7 @@ $('#buyBtn').on('click', function(){
 
 $('#logout').on('click', () => {
     sessionStorage.clear();
-    location.href = "http://localhost/apps/phpvariables/index.php";
+    location.href = "http://localhost/apps/Chinook/index.php";
 });
 
 $('#closeBtn').on('click', function(){

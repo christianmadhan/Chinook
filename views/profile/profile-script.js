@@ -1,10 +1,10 @@
 $( document ).ready(() => {
     if(sessionStorage.getItem('auth') == null){
         sessionStorage.clear();
-        location.href = "http://localhost/apps/phpvariables/index.php";
+        location.href = "http://localhost/apps/Chinook/index.php";
     }else {
         $('#loader').show();
-        var url = "http://localhost/apps/phpvariables/controller/customer/get-single-customer.php";
+        var url = "http://localhost/apps/Chinook/controller/customer/get-single-customer.php";
         data = {
             auth: sessionStorage.getItem("auth")
         }
@@ -18,7 +18,7 @@ $( document ).ready(() => {
                    console.log(res);
                     sessionStorage.clear();
                    alert('Your session Has expired, please log in again.');
-                   location.href = "http://localhost/apps/phpvariables/index.php";
+                   location.href = "http://localhost/apps/Chinook/index.php";
                },
                200: (response) => {
                 $('#loader').hide();
@@ -42,7 +42,7 @@ $( document ).ready(() => {
 
 $('#logout').on('click', function(){
     sessionStorage.clear();
-    location.href = "http://localhost/apps/phpvariables/index.php";
+    location.href = "http://localhost/apps/Chinook/index.php";
 });
 
 $('.fas').on('click', function() {
@@ -54,7 +54,7 @@ $('#submitBtn').on('click', function() {
     if($("#profileForm").valid()){
         $('#profileForm').hide();
         $('#loader').show();
-        var url = "http://localhost/apps/phpvariables/controller/customer/update-customer.php";
+        var url = "http://localhost/apps/Chinook/controller/customer/update-customer.php";
         data = {
             auth: sessionStorage.getItem("auth"),
             Firstname: $('#firstname').val(),
@@ -77,7 +77,7 @@ $('#submitBtn').on('click', function() {
             statusCode: {
                 401: () => {
                     alert('Your session Has expired, please log in again.');
-                    location.href = "http://localhost/apps/phpvariables/index.php";
+                    location.href = "http://localhost/apps/Chinook/index.php";
                 },
                 200: (response) => {
                     location.reload();

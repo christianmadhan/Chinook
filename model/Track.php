@@ -40,9 +40,10 @@ class Track{
     function GetOne($data) {
         $id = htmlspecialchars($data["TrackId"]);
             // select all query
-        $query = "SELECT * FROM TRACK WHERE TrackId = (%s)" % ($id);
+        $query = "SELECT * FROM TRACK WHERE TrackId = :id";;
                 // prepare query statement
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
       
         // execute query
         $stmt->execute();

@@ -30,7 +30,7 @@ if($emailAndPasswordValidated){
         $invoiceId = $customer->createNewUser($Email,$hashedPassword);
         if(isset($invoiceId)){
             // API URL
-            $url = 'http://localhost/apps/phpvariables/controller/auth/login.php';
+            $url = 'http://localhost/apps/Chinook/controller/auth/login.php';
 
             // Create a new cURL resource
             $ch = curl_init($url);

@@ -14,10 +14,10 @@
     <i class="fas fa-bars fa-2x"></i>
     </div>
     <nav>
-        <a class="link" href="http://localhost/apps/phpvariables/views/main/main.php">Home</a>
-        <a class="link" href="http://localhost/apps/phpvariables/views/profile/profile.php">Profile</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/main/main.php">Home</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/profile/profile.php">Profile</a>
         <a class="link clicked">Browse</a>
-        <a class="link" href="http://localhost/apps/phpvariables/views/cart/cart.php">Cart</a>
+        <a class="link" href="http://localhost/apps/Chinook/views/cart/cart.php">Cart</a>
         <a class="link logout" id="logout">Logout</a>
     </nav>
     <main>
@@ -31,28 +31,52 @@
             <button id="albumBtn">Albums</button>
             <button id="artistBtn">Artist</button>
         </div>
+
+        <div id="alertSuccessModal" class="modal" style="display:none;">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <i  id="closeBtn" class="far fa-times-circle close closeBtn"></i>
+                <div id="alertSuccess" class="alert success">
+                    Success! Track added to your cart.
+                </div>
+            </div>
+        </div>
+
+        <div id="alertDangerModal" class="modal" style="display:none;">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <i  id="closeBtn" class="far fa-times-circle close closeBtn"></i>
+                <div id="alertDanger"  class="alert danger">
+                    Something bad happened, couldn't puchase the track. Please contact us if this issue keeps showing.
+                </div>
+            </div>
+        </div>
+
         <div class="loader" style="display:none;" id="loader">
         <img src="../../src/img/spinner.gif">
         </div>
+        
         <div class="container" id="tracks" style="display:none;">
         <input type="text" id="myInput" onkeyup="myFunction()"  placeholder="Search for names.." title="Type in a name">
         </div>
+
         <!-- The Modal -->
         <div id="purchasedModal" class="modal" style="display:none;">
             <!-- Modal content -->
             <div class="modal-content">
-            <i  id="closeBtn" class="far fa-times-circle close"></i>
-            <div class="loader" id="loader2">
-            <img src="../../src/img/spinner.gif">
+                <i  id="closeBtn" class="far fa-times-circle close closeBtn"></i>
+                <div class="loader" id="loader2">
+                    <img src="../../src/img/spinner.gif">
+                </div>
+                <div id="message" style="display:none;"></div>
             </div>
-            <div id="message" style="display:none;"> 
-            </div>
-            </div>
-        </div>
+      </div>
+    
     </main>
 <footer>
     
 </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
     <script src="./browse-script.js"></script>
 </body>

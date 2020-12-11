@@ -1,13 +1,13 @@
 $( document ).ready(() => {
     if(sessionStorage.getItem('auth') == null){
-        location.href = "http://localhost/apps/phpvariables/index.php";
+        location.href = "http://localhost/apps/Chinook/index.php";
     }
 });
 
 $('#trackBtn').on('click', function() {
     $('#tracks').empty();
     $('#loader').show();
-    var url = "http://localhost/apps/phpvariables/controller/track/get-all-tracks.php";
+    var url = "http://localhost/apps/Chinook/controller/track/get-all-tracks.php";
     $.ajax({
         type: "GET",
         url: url,
@@ -76,7 +76,7 @@ $('#trackBtn').on('click', function() {
                             "quantity": quantity,
                             "unitPrice": total
                         }
-                        var url = "http://localhost/apps/phpvariables/controller/cart/add-track.php";
+                        var url = "http://localhost/apps/Chinook/controller/cart/add-track.php";
                         $.ajax({
                             type: "POST",
                             url: url,
@@ -85,13 +85,16 @@ $('#trackBtn').on('click', function() {
                             statusCode: {
                                 401: () => {
                                     alert('Your session Has expired, please log in again.');
-                                    location.href = "http://localhost/apps/phpvariables/index.php";
+                                    location.href = "http://localhost/apps/Chinook/index.php";
                                 },
                                 200: (response) => {
-                                    alert('Track purchued!');
+                                    $('#alertSuccessModal').show();
                                 }
                             }
+                        }).fail(function() {
+                            $('#alertDangerModal').show();
                         });
+                        
                     } else {
                         alert("quantity not allowed");
                     }
@@ -108,7 +111,7 @@ $('#trackBtn').on('click', function() {
 $('#albumBtn').on('click', function() {
     $('#loader').show();
     $('#tracks').empty();
-    var url = "http://localhost/apps/phpvariables/controller/album/get-all-albums.php";
+    var url = "http://localhost/apps/Chinook/controller/album/get-all-albums.php";
      $.ajax({
         type: "GET",
         url: url,
@@ -159,13 +162,15 @@ $('#albumBtn').on('click', function() {
                     $('#tracks').show();
                 }
             }
+        }).fail(function() {
+            $('#alertDangerModal').show();
         });
     });
 
 $('#artistBtn').on('click', function() {
     $('#loader').show();
     $('#tracks').empty();
-    var url = "http://localhost/apps/phpvariables/controller/artist/get-all-artist.php";
+    var url = "http://localhost/apps/Chinook/controller/artist/get-all-artist.php";
     $.ajax({
         type: "GET",
         url: url,
@@ -180,7 +185,6 @@ $('#artistBtn').on('click', function() {
                 <input type="text" id="myInput" onkeyup="myFunction()"  placeholder="Search for names.." title="Type in a name">
                 <table  id="tracksTable">
                 <tr>
-                <th scope="col">ArtistId</th>
                 <th scope="col">Name</th>
                 </tr>
                 </table>
@@ -188,9 +192,6 @@ $('#artistBtn').on('click', function() {
                 $.each(response, function(index) {
                     $('#tracksTable').append(
                         `<tr>
-                        <td>
-                        ${response[index].ArtistId}
-                        </td>
                         <td>
                         ${response[index].Name}
                         </td>
@@ -201,6 +202,8 @@ $('#artistBtn').on('click', function() {
                     $('#tracks').show();
             }
         }
+    }).fail(function() {
+        $('#alertDangerModal').show();
     });
 });
 
@@ -228,7 +231,7 @@ function myFunction() {
 // ------------------------------------------------------------------------
 
 function getAlbum(trackId, albumName){
-    var album_url = "http://localhost/apps/phpvariables/controller/album/get-album.php";
+    var album_url = "http://localhost/apps/Chinook/controller/album/get-album.php";
     data = {
         AlbumId: trackId
     };
@@ -310,7 +313,7 @@ function getAlbum(trackId, albumName){
                                 "quantity": quantity,
                                 "unitPrice": total
                             }
-                            var url = "http://localhost/apps/phpvariables/controller/cart/add-track.php";
+                            var url = "http://localhost/apps/Chinook/controller/cart/add-track.php";
                             $.ajax({
                                 type: "POST",
                                 url: url,
@@ -319,13 +322,16 @@ function getAlbum(trackId, albumName){
                                 statusCode: {
                                     401: () => {
                                         alert('Your session Has expired, please log in again.');
-                                        location.href = "http://localhost/apps/phpvariables/index.php";
+                                        location.href = "http://localhost/apps/Chinook/index.php";
                                     },
-                                    200: (response) => {
-                                        alert('Track purchued!');
+                                    200: () => {
+                                        $('#alertSuccess').show();
                                     }
                                 }
+                            }).fail(function() {
+                                $('#alertDangerModal').show();
                             });
+
                         } else {
                             alert("quantity not allowed");
                         }
@@ -334,19 +340,22 @@ function getAlbum(trackId, albumName){
                    $('#message').show();
             }
         }
+    }).fail(function() {
+        $('#alertDangerModal').show();
     });
 }
 
 // -----------------------------------------------------------------------
 
-$('#closeBtn').on('click', function(e){
-    e.preventDefault();
+$('.closeBtn').on('click', function(e){
     $('#purchasedModal').hide();
+    $('#alertSuccessModal').hide();
+    $('#alertDangerModal').hide();
 });
 
 $('#logout').on('click', () => {
     sessionStorage.clear();
-    location.href = "http://localhost/apps/phpvariables/index.php";
+    location.href = "http://localhost/apps/Chinook/index.php";
 });
 
     
