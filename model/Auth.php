@@ -1,6 +1,5 @@
 <?php
 
-
 class Auth {
     // database connection and table name
     private $conn;
@@ -13,7 +12,7 @@ class Auth {
     function Login($data){
         $email = htmlspecialchars($data["Email"]);
         $password = htmlspecialchars($data["Password"]);
-        $query = "SELECT * FROM CUSTOMER WHERE Email = :email LIMIT 1";
+        $query = "SELECT * FROM `customer` WHERE Email = :email LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
@@ -47,6 +46,38 @@ class Auth {
         return $verrified;
     }
 
+
+    function AdminLogin($data){
+        $password = htmlspecialchars($data["Password"]);
+        $query = "SELECT * FROM admin";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $num = $stmt->rowCount();
+        $verrified = array();
+        $verrified['authState'] = "Unauthenticated";
+
+        if($num > 0) {
+            $result = $stmt->fetch();
+            $pass = $result["Password"];
+            $hash = password_verify($password, $pass);
+            if($hash == true){
+                $issuedAt = time();
+                $expiresAt =  $issuedAt + 10000;
+                $authState = "Authenticated";
+              
+                $verrified = array('authState' => $authState, 'issuedAt' => $issuedAt, 'expiresAt' => $expiresAt);
+            } 
+         } else {
+            $verrified['authState']  = "Unauthenticated";
+        }
+        return $verrified;
+    }
+
+/* 
+* Encrypt array function.
+* Param: Array.
+* returns encrypted base64 string
+*/
 function auth_encrypt($arr){
     $ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
     $iv = openssl_random_pseudo_bytes($ivlen);
@@ -56,6 +87,9 @@ function auth_encrypt($arr){
     return $ciphertext;
     }
 
+/* 
+* Decrypt array encrypted array.
+*/
     function auth_decrypt($ciphertext){
         $c = base64_decode($ciphertext);
         $ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");

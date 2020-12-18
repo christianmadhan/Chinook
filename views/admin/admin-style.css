@@ -226,6 +226,17 @@ button {
   padding: 10px;
 }
 
+.button-alternative {
+ cursor: pointer;
+ height: 45px;
+ width: 200px;
+ color: white;
+ border-radius: 10px;
+ border-color: #1f1f1f;
+ background-color: #fa2d48;
+ outline: none;
+}
+
 
 .wrapper {
   background-color:#f4f4f4;

@@ -1,9 +1,11 @@
+import * as urlHelper from '../helper/url.js';
+
 $( document ).ready(() => {
     if(sessionStorage.getItem('auth') == null){
-        location.href = "http://localhost/apps/Chinook/index.php";
+        location.href = urlHelper.constructUrl();
     } else {
-        var url = "http://localhost/apps/Chinook/controller/cart/get-cart.php";
-        data = {
+        var url = urlHelper.constructUrl("cart", "get-cart");
+        var data = {
             auth: sessionStorage.getItem("auth")
         }
         $.ajax({
@@ -16,7 +18,7 @@ $( document ).ready(() => {
                    console.log(res);
                     sessionStorage.clear();
                    alert('Your session Has expired, please log in again.');
-                   location.href = "http://localhost/apps/Chinook/index.php";
+                   location.href = urlHelper.constructUrl();
                },
                200: (response) => {
                    var totalPrice = 0.0;
@@ -63,7 +65,7 @@ $( document ).ready(() => {
 $('#buyBtn').on('click', function(){
     if($('#billingInfo').valid()){
         $('#purchasedModal').show();
-        var url = "http://localhost/apps/Chinook/controller/cart/purchase.php";
+        var url = urlHelper.constructUrl('cart', 'purchase');
         data = {
             auth: sessionStorage.getItem("auth"),
             Total: $('#buyBtn').attr('total'),
@@ -83,7 +85,7 @@ $('#buyBtn').on('click', function(){
                    console.log(res);
                     sessionStorage.clear();
                    alert('Your session Has expired, please log in again.');
-                   location.href = "http://localhost/apps/Chinook/index.php";
+                   location.href = urlHelper.constructUrl();
                },
               500: (response) => {
                 $('#loader').hide();
@@ -110,7 +112,7 @@ $('#buyBtn').on('click', function(){
 
 $('#logout').on('click', () => {
     sessionStorage.clear();
-    location.href = "http://localhost/apps/Chinook/index.php";
+    location.href = urlHelper.constructUrl();
 });
 
 $('#closeBtn').on('click', function(){

@@ -4,9 +4,9 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 // include database and object files
 include_once '../../../config/database.php';
-include_once '../../../Model/Admin.php';
+include_once '../../../model/admin.php';
 
-// instantiate database and product object
+// instantiate database and db object
 $database = new Database();
 $db = $database->getConnection();
 
@@ -26,9 +26,4 @@ if($res){
     $resArray = array("response" => "Error");
     echo json_encode($resArray);
 }
-
-  
-  
-// no products found will be here
-
 ?>

@@ -1,11 +1,49 @@
 <?php
+
+/** 
+ * @api {post} /controller/track/get-track.php Get one track
+ * @apiName GetOneTrack
+ * @apiGroup Track
+ * @apiVersion 0.0.0
+ * 
+ * @apiHeaderExample {json} Header-Example:
+ * {
+ *   "Access-Control-Allow-Origin": "*"
+ *   "Content-Type": "application/json; charset=UTF-8"
+ * 
+ * }
+ * @apiParam {json} auth a valid auth token is required.
+ * 
+ *  * @apiParamExample {json} Request-Example:
+* {
+*    "TrackId": 123
+* }
+ * 
+ * @apiSuccess {json} response success response
+ * @apiSuccessExample Example data on success: 
+* [
+*    {
+*        "Name": "Quadrant",
+*        "AlbumId": "13",
+*        "MediaTypeId": "1",
+*        "GenreId": "2",
+*        "Composer": "Billy Cobham",
+*        "Milliseconds": "261851",
+*        "Bytes": "8538199",
+*        "UnitPrice": "0.99"
+*    }
+* ]
+ * @apiError TrackDoesNotExitError the trackid provided does not exit or is missing from post body.
+ * 
+ */
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 // include database and object files
 include_once '../../config/database.php';
-include_once '../../Model/track.php';
-include_once '../../Model/auth.php';
+include_once '../../model/track.php';
+include_once '../../model/auth.php';
 
 
 // instantiate database and product object
@@ -23,10 +61,9 @@ $auth = new Auth($db);
 $stmt = $track->GetOne($data);
 $num = $stmt->rowCount();
 
-// check if more than 0 record found
 if($num>0){
     
-    // products array
+
     $track_arr["track"]=array();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
@@ -45,11 +82,9 @@ if($num>0){
     
         array_push($track_arr["track"], $track_item);
     }
-    
-    // set response code - 200 OK
+
     http_response_code(200);
-    
-    // show products data in json format
+
     echo json_encode($track_arr["track"]);
 } else {
     
@@ -58,6 +93,4 @@ if($num>0){
         array("message" => "No Tracks with that Id found")
     );
 }
-// no products found will be here
-
 ?>

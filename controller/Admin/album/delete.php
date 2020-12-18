@@ -2,15 +2,15 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-// include database and object files
+// include database and admin file
 include_once '../../../config/database.php';
-include_once '../../../Model/Admin.php';
+include_once '../../../model/admin.php';
 
-// instantiate database and product object
+// instantiate database and db object
 $database = new Database();
 $db = $database->getConnection();
 
-// initialize object
+// initialize admin
 $admin = new Admin($db);
 
 $data = json_decode(file_get_contents('php://input'), true);
@@ -27,8 +27,5 @@ if($res){
     echo json_encode($resArray);
 }
 
-  
-  
-// no products found will be here
 
 ?>

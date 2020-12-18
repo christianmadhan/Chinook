@@ -14,7 +14,6 @@ class Album{
         $this->conn = $db;
     }
 
-        // read products
     function GetAll(){
         // select all query
         $query = "SELECT album.Title, artist.Name, album.AlbumId FROM album INNER JOIN artist ON album.ArtistId=artist.ArtistId";

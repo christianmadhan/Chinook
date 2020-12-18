@@ -14,7 +14,7 @@ class Cart{
         $quantity = $data['quantity'];
         $unitPrice = $data['unitPrice'];
         
-        $query = "INSERT INTO INVOICELINE (`InvoiceId`,`TrackId`, `UnitPrice`, `Quantity`) VALUES (:invoiceId, :trackId, :unitPrice, :quantity)";
+        $query = "INSERT INTO `invoiceline` (`InvoiceId`,`TrackId`, `UnitPrice`, `Quantity`) VALUES (:invoiceId, :trackId, :unitPrice, :quantity)";
         $stmtInvoiceLine = $this->conn->prepare($query);
         $stmtInvoiceLine->bindParam(':trackId', $trackId, PDO::PARAM_STR);
         $stmtInvoiceLine->bindParam(':invoiceId', $invoiceId, PDO::PARAM_STR);
@@ -30,20 +30,17 @@ class Cart{
 
     function getCart($invoiceId){
         
-        $query = "SELECT invoiceline.Quantity, invoiceline.UnitPrice, track.Name FROM invoiceline INNER JOIN track ON track.TrackId=invoiceline.TrackId WHERE invoiceline.InvoiceId = :invoiceId";
+        $query = "SELECT invoiceline.Quantity, invoiceline.UnitPrice, track.Name FROM `invoiceline` INNER JOIN track ON track.TrackId=invoiceline.TrackId WHERE invoiceline.InvoiceId = :invoiceId";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':invoiceId', $invoiceId, PDO::PARAM_STR);
         $stmt->execute();
         $num = $stmt->rowCount();
-        // // check if more than 0 record found
+
         if($num>0){
         
             // invoiceline array
             $invoiceline_arr["invoiceline"]=array();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                // extract row
-                // this will make $row['name'] to
-                // just $name only
                 extract($row);
         
                 $invoiceline_item=array(
@@ -60,13 +57,13 @@ class Cart{
             $InvoiceLineInfo = array(
                 "InvoiceLine" => $invoiceline_arr["invoiceline"]
             );
-            // show products data in json format
+            // show invoiceline data in json format
             return json_encode($InvoiceLineInfo);
         } else {
             // set response code - 404 Not found
             http_response_code(404);
         
-            // tell the user no products found
+            // tell the user no invoiceline found
             echo json_encode(
                 array("message" => "No invoiceline found.")
             );
@@ -74,7 +71,7 @@ class Cart{
     }
 
     function getCustomerBillingInformation($customerId){
-        $query = "SELECT * FROM CUSTOMER WHERE CustomerId = $customerId";
+        $query = "SELECT * FROM `customer` WHERE CustomerId = $customerId";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':customerId', $customerId, PDO::PARAM_STR);
         $stmt->execute();
@@ -85,9 +82,6 @@ class Cart{
             // invoiceline array
             $customer["billingInfo"]=array();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                // extract row
-                // this will make $row['name'] to
-                // just $name only
                 extract($row);
         
                 $customer_item=array(
@@ -104,12 +98,12 @@ class Cart{
             $customerBillingInfo = array(
                 "BillingInfo" => $customer["billingInfo"]
             );
-            // show products data in json format
+            // show invoiceline data in json format
             return json_encode($customerBillingInfo);
         } else {
             // set response code - 404 Not found
             http_response_code(404);     
-            // tell the user no products found
+            // tell the user no invoiceline found
             echo json_encode(
                 array("message" => "No Customer found.")
             );
@@ -144,6 +138,7 @@ class Cart{
           }
     }
 
+    // not used, maybe for exam=?
     function checkBillingStatus($customerId, $InvoiceId){
         $query  = $this->conn->prepare("SELECT  `invoice` SET `BillingAddress`=:BillingAddress,`BillingCity`=:City, WHERE CustomerId = :CustomerId AND  InvoiceId = :InvoiceId");
     }

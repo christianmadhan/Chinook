@@ -1,4 +1,49 @@
 <?php
+/** 
+ * @api {post} /controller/cart/get-cart.php get cart
+ * @apiName GetCart
+ * @apiGroup Cart
+ * @apiVersion 0.0.0
+ * 
+ * @apiHeaderExample {json} Header-Example:
+ * {
+ *   "Access-Control-Allow-Origin": "*"
+ *   "Content-Type": "application/json; charset=UTF-8"
+ * 
+ * }
+ * @apiParam {json} auth a valid auth token is required.
+ * 
+ *  * @apiParamExample {json} Request-Example:
+ *     {
+ *      auth: "example"
+ *     }
+ * 
+ * @apiSuccess {json} response success response
+ * @apiSuccessExample Example data on success: 
+ *   {
+ *       {
+ *   "BillingInfo": [
+ *       {
+ *           "Address": "katrinedal 16",
+ *           "City": "Svinninge",
+ *           "State": "Sjælland",
+ *           "Country": "Danmark",
+ *           "PostalCode": "4520"
+ *       }
+ *   ],
+ *   "InvoiceLine": [
+ *       {
+ *           "Quantity": "1",
+ *           "UnitPrice": "0.99",
+ *           "Name": "Walk On Water"
+ *       }]
+ *     }
+ *   }
+ * 
+ * @apiError AuthEmptyError the auth token was empty/or not included. Minimum of <code>auth: "example"</code> is required in post body.
+ * 
+ * 
+ */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // required headers
@@ -6,12 +51,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Content-Type: application/json; charset=UTF-8");
     // include database and object files
     include_once '../../config/database.php';
-    include_once '../../Model/auth.php';
-    include_once '../../Model/cart.php';
-    include_once '../../Model/customer.php';
+    include_once '../../model/auth.php';
+    include_once '../../model/cart.php';
+    include_once '../../model/customer.php';
 
     
-    // instantiate database and product object
+    // instantiate database and db object
     $database = new Database();
     $db = $database->getConnection();
     
@@ -23,13 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $descrypted = $auth->auth_decrypt($data['auth'], true);
     $decoded = json_decode($descrypted, true);
-    
     if($decoded['authState'] == "Authenticated"){
             $current = time();
             $expiresAt = $decoded['expiresAt'];
             $expired =  $expiresAt - $current;
             if($expired > 0) {
-                // // query customers
                 $customerId = $decoded['CustomerId'];
                 $invoiceId = $decoded['InvoiceId'];
                 $billingInfo = $cart->getCustomerBillingInformation($customerId);
@@ -43,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
     
     } else {
-       // http_response_code(500);
-        echo "WOW";
+        http_response_code(401);
+        echo "Not authenticated";
     }
 } else {
     http_response_code(405);

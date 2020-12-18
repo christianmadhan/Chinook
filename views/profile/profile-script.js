@@ -1,11 +1,13 @@
+import * as urlHelper from '../helper/url.js';
+
 $( document ).ready(() => {
     if(sessionStorage.getItem('auth') == null){
         sessionStorage.clear();
-        location.href = "http://localhost/apps/Chinook/index.php";
+        location.href = urlHelper.constructUrl();
     }else {
         $('#loader').show();
-        var url = "http://localhost/apps/Chinook/controller/customer/get-single-customer.php";
-        data = {
+        var url = urlHelper.constructUrl('customer', 'get-single-customer');
+        var data = {
             auth: sessionStorage.getItem("auth")
         }
         $.ajax({
@@ -18,7 +20,7 @@ $( document ).ready(() => {
                    console.log(res);
                     sessionStorage.clear();
                    alert('Your session Has expired, please log in again.');
-                   location.href = "http://localhost/apps/Chinook/index.php";
+                   location.href = urlHelper.constructUrl();
                },
                200: (response) => {
                 $('#loader').hide();
@@ -42,7 +44,7 @@ $( document ).ready(() => {
 
 $('#logout').on('click', function(){
     sessionStorage.clear();
-    location.href = "http://localhost/apps/Chinook/index.php";
+    location.href = urlHelper.constructUrl();
 });
 
 $('.fas').on('click', function() {
@@ -50,12 +52,43 @@ $('.fas').on('click', function() {
     $('#submitEditListElm').show();
 });
 
+$('#changePassBtn').on('click', function(){
+    $('#changePasswordModal').show();
+});
+
+$('#changePassSubmitBtn').on('click', function(){
+    var url = urlHelper.constructUrl('auth', 'changepassword');
+    var data = {
+        auth: sessionStorage.getItem("auth"),
+        Password: $('#newpassword').val()
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        statusCode: {
+            401: () => {
+                alert('Your session Has expired, please log in again.');
+                location.href = urlHelper.constructUrl();
+            },
+            200: () => {
+                $('#changePasswordModal').hide();
+                $('#alertSuccessModal').show();
+            }
+        }
+    }).fail(function(){
+        $('#alertDangerModal').show();
+    });
+});
+
+
 $('#submitBtn').on('click', function() {
     if($("#profileForm").valid()){
         $('#profileForm').hide();
         $('#loader').show();
-        var url = "http://localhost/apps/Chinook/controller/customer/update-customer.php";
-        data = {
+        var url = urlHelper.constructUrl('customer', 'update-customer');
+        var data = {
             auth: sessionStorage.getItem("auth"),
             Firstname: $('#firstname').val(),
             Lastname: $('#lastname').val(),
@@ -77,7 +110,7 @@ $('#submitBtn').on('click', function() {
             statusCode: {
                 401: () => {
                     alert('Your session Has expired, please log in again.');
-                    location.href = "http://localhost/apps/Chinook/index.php";
+                    location.href = urlHelper.constructUrl();
                 },
                 200: (response) => {
                     location.reload();
@@ -86,4 +119,11 @@ $('#submitBtn').on('click', function() {
         });
         
     }
+});
+
+
+$('.closeBtn').on('click', function(e){
+    $('#changePasswordModal').hide();
+    $('#alertSuccessModal').hide();
+    $('#alertDangerModal').hide();
 });

@@ -1,4 +1,40 @@
 <?php
+/** 
+ * @api {post} /controller/cart/purchase.php purchase items from cart
+ * @apiName PurchaseCart
+ * @apiGroup Cart
+ * @apiVersion 0.0.0
+ * 
+ * @apiHeaderExample {json} Header-Example:
+ * {
+ *   "Access-Control-Allow-Origin": "*"
+ *   "Content-Type": "application/json; charset=UTF-8"
+ * 
+ * }
+ * @apiParam {json} auth a valid auth token is required.
+ * 
+ *  * @apiParamExample {json} Request-Example:
+ *     {
+ *   "auth": "example",
+ *   "Total": 12.0,
+ *   "Address": "Katrinedal 16",
+ *   "City": "Svinninge",
+ *   "State": "Sjælland",
+ *   "Country": "Denmark",
+ *   "PostalCode": "4520"
+ *     }
+ * 
+ * @apiSuccess {json} response success response
+ * @apiSuccessExample Example data on success: 
+ *   {
+ *    "response": "Successfully Purchased"
+ *   }
+ * 
+ * @apiError AuthEmptyError the auth token was empty/or not included. Minimum of <code>auth: "example"</code> is required in post body.
+ * @apiError BillingInformationNotfulliedError missing billing information - make sure that everything is included in post body.
+ * 
+ * 
+ */
 
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     // required headers
@@ -6,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     header("Content-Type: application/json; charset=UTF-8");
     // include database and object files
     include_once '../../config/database.php';
-    include_once '../../Model/auth.php';
-    include_once '../../Model/cart.php';
+    include_once '../../model/auth.php';
+    include_once '../../model/cart.php';
     
-    // instantiate database and product object
+    // instantiate database and db object
     $database = new Database();
     $db = $database->getConnection();
     

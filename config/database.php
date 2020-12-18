@@ -1,14 +1,14 @@
 <?php
 class Database{
   
-    // specify your own database credentials
-    private $host = "localhost";
+    // Database credential. Connection string to aws instance.
+    private $host = "chinookabrided.corx0pahan9c.us-east-1.rds.amazonaws.com";
     private $db_name = "chinook_abridged";
     private $username = "root";
-    private $password = "";
-    public $conn;
+    private $password = "tywMKPZKWzZwc8nR9rLh";
+    public  $conn;
   
-    // get the database connection
+    // Wraps the connection in a try catch. and returns the connection to be used.
     public function getConnection(){
         $this->conn = null;
         try{

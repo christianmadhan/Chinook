@@ -18,6 +18,12 @@ hr {
 
  }
 
+ .welcome {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 main {
   padding-left: 16%;
   padding-right: 5%;

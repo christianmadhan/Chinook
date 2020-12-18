@@ -3,19 +3,7 @@ class Track{
   
     // database connection and table name
     private $conn;
-    private $table_name = "track";
-  
-    // object properties
-    public $TrackId;
-    public $Name;
-    public $AlbumId;
-    public $MediaTypeId;
-    public $GenreId;
-    public $Composer;
-    public $Milliseconds;
-    public $Bytes;
-    public $UnitPrice;
-
+    
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
@@ -25,7 +13,7 @@ class Track{
     function GetAll(){
         
         // select all query
-        $query = "SELECT * FROM TRACK";
+        $query = "SELECT * FROM `track`";
         
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -40,7 +28,7 @@ class Track{
     function GetOne($data) {
         $id = htmlspecialchars($data["TrackId"]);
             // select all query
-        $query = "SELECT * FROM TRACK WHERE TrackId = :id";;
+        $query = "SELECT * FROM `track` WHERE TrackId = :id";;
                 // prepare query statement
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);

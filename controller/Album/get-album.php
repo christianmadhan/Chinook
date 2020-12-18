@@ -1,10 +1,40 @@
 <?php 
+/** 
+ * 
+ * @api {post} /controller/album/get-album get one album
+ * @apiName GetOneAlbum
+ * @apiGroup Album
+ * @apiVersion 0.0.0
+ * 
+ * @apiHeaderExample {json} Header-Example:
+ * {
+ *   "Access-Control-Allow-Origin": "*"
+ *   "Content-Type": "application/json; charset=UTF-8"
+ * 
+ * }
+ * @apiSuccess {String} albums A list of albums
+ * @apiParam {auth} a valid auth token is required.
+ * @apiParam {AlbumId} a Id of an existing album is required.
+ * 
+ * 
+ * @apiSuccessExample Example data on success:
+ * [{
+ *   AlbumId: "5",
+ *   Title: "Big Ones",
+ *   Name: "Aerosmith"
+ * }]
+ * 
+ * @apiError AuthEmptyError the auth token was empty/or not included. Minimum of <code>auth: "example"</code> is required in post body.
+ * @apiError InvalidAlbumId the album with <code>"AlbumId": "id" </code> was not found. make sure the album id exist. 
+ * 
+ */
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 // include database and object files
 include_once '../../config/database.php';
-include_once '../../Model/album.php';
+include_once '../../model/album.php';
 
 // instantiate database and product object
 $database = new Database();
@@ -15,14 +45,11 @@ $album = new Album($db);
   
 $data = json_decode(file_get_contents('php://input'), true);
 
-// // query customers
 $stmt = $album->GetAlbum($data);
 $num = $stmt->rowCount();
 
-// check if more than 0 record found
 if($num>0){
-  
-    // products array
+
     $album_arr["album"]=array();
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -42,12 +69,9 @@ if($num>0){
         array_push($album_arr["album"],  $album_item);
     }
     http_response_code(200);
-    // show products data in json format
     echo json_encode($album_arr["album"]);
 } else {
-    // set response code - 404 Not found
     http_response_code(404);
-    // tell the user no products found
     echo json_encode(
         array("message" => "No albums found.")
     );

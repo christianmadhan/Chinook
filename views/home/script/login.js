@@ -1,3 +1,5 @@
+import * as urlHelper from '../../helper/url.js';
+
 var num = 0;
 
 $( document ).ready(function() {
@@ -19,39 +21,40 @@ $( document ).ready(function() {
 
 // -----------------------------------------------
 $('#openloginBtn').on('click', function() {
-    $('#myModal').fadeIn( "slow", function() {
-        // Animation complete
-      });
+    $('#userModal').fadeIn( "slow", function() {});
 });
 
 $('#closeModal').on('click', function() {
-    $('#myModal').fadeOut( "slow", function() {
-        // Animation complete
-      });
+    $('#userModal').fadeOut("slow", function(){});
+    $('#adminModal').fadeOut("slow", function(){});
+
 });
 
+$('#closeModalAdmin').on('click', function() {
+    $('#adminModal').fadeOut("slow", function(){});
+
+});
 // event = keyup or keydown
 document.addEventListener('keyup', event => {
     if (event.code === 'AltLeft') {
         num++;
-        console.log(num);
     }
     if(num == 3){
         num = 0;
-        $('#adminLoginCrown').fadeIn('slow', function(){});
-        $('#adminLoginBtn').fadeIn('slow', function(){});
-        $('#loginBtn').hide();
+        $('#userModal').hide();
+        $('#adminModal').fadeIn("slow");
     }
 });
 
 $('#loginBtn').on('click', function(e) {
    if($("#loginForm").valid()){
        e.preventDefault();
-    data = {
+    var data = {
         "Email": $('#email').val(),
         "Password": $('#password').val(),
      }
-     var url = "http://localhost/apps/Chinook/controller/auth/login.php";
+     var url = urlHelper.constructUrl('auth', 'login');
+
      $.ajax({
          type: "POST",
          url: url,
@@ -62,34 +65,40 @@ $('#loginBtn').on('click', function(e) {
               $('#unauthorized').show();
             },
             200: (response) => {
+                console.log(response);
                 $('#unauthorized').hide();
                 sessionStorage.setItem('auth', response);
-                window.location.href = "http://localhost:/apps/Chinook/views/main/main.php";
+                location.href = urlHelper.constructUrl("redirect", "main");
             }
           }
-       }).done((response) => {
-            console.log(response);
-       })
-     
+       }).fail(function(){
+        
+       });
+
    }    
 });
 
 
-$('#adminloginBtn').on('click', function() {
-    data = {
-        "email": $('#email').val(),
-        "email": $('#password').val(),
-     }
-
-     var url = "http://localhost/apps/Chinook/controller/auth/login.php";
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data,
-        success: function(response) {
-            console.log(response)
-        },
-      });
+$('#adminLoginBtn').on('click', function(e) {
+    if($('#AdminloginForm').validate()){
+        var dataPass = {
+            Password: $('#adminPassword').val(),
+         }
+         var url = urlHelper.constructAdminUrl('auth', 'login')
+         console.log('hello?');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: JSON.stringify(dataPass),
+            success: function(response) {
+                $('#unauthorizedAdmin').hide();
+                sessionStorage.setItem('auth', response);
+                location.href = urlHelper.constructAdminUrl('redirect', 'main');
+            },
+          }).fail(function(){
+            $('#unauthorizedAdmin').show();
+          });
+    }
 });
 
 
@@ -118,12 +127,12 @@ $('#SignUpForm').on('click', function(e) {
 
     if($("#SignUpForm").valid()){
         e.preventDefault();
-     data = {
+     var data = {
          "Email": $('#signUpEmail').val(),
          "Password": $('#singUpPassword').val(),
          "RepeatPassword": $('#singUpRepeatPassword').val(),
-      }      
-      var url = "http://localhost/apps/Chinook/controller/auth/newuser.php";
+      }
+      var url = urlHelper.constructUrl('auth', 'newuser');
       $.ajax({
           type: "POST",
           url: url,
@@ -136,12 +145,12 @@ $('#SignUpForm').on('click', function(e) {
              200: (response) => {
                  $('#unauthorized').hide();
                  sessionStorage.setItem('auth', response);
-                 window.location.href = "http://localhost:/apps/Chinook/views/main/main.php";
+                 location.href = urlHelper.constructUrl("redirect", "main");
              }
            }
         }).done((response) => {
-             console.log(response);
-        })
+        
+        });
       
     }    
  });

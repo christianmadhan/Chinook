@@ -9,11 +9,10 @@ class Artist{
         $this->conn = $db;
     }
 
-        // read all tracks
     function GetAll(){
         
         // select all query
-        $query = "SELECT * FROM ARTIST";
+        $query = "SELECT * FROM `artist`";
         
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -24,13 +23,14 @@ class Artist{
         return $stmt;
     }
     
-    // Get a single track
+    // Get a single artist
     function GetOne($data) {
         $id = htmlspecialchars($data["ArtistId"]);
             // select all query
-        $query = "SELECT * FROM ARTIST WHERE ArtistId = (%s)" % ($id);
+        $query = "SELECT * FROM `artist` WHERE artist.ArtistId = :id";
                 // prepare query statement
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id);
       
         // execute query
         $stmt->execute();
