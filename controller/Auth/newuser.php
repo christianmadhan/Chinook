@@ -62,7 +62,7 @@ if($emailAndPasswordValidated){
         $invoiceId = $customer->createNewUser($Email,$hashedPassword);
         if(isset($invoiceId)){
             // API URL
-            $url = 'http://chinook-env.us-east-1.elasticbeanstalk.com/controller/auth/login.php';
+            $url = 'http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com/controller/auth/login.php';
 
             // Create a new cURL resource
             $ch = curl_init($url);
