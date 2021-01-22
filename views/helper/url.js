@@ -1,5 +1,5 @@
 function constructUrl(controller, action) {
-    var root = "http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com";
+    var root = "http://localhost/chinook";
     switch (controller) {
         case "album":
             switch (action) {
@@ -75,7 +75,7 @@ function constructUrl(controller, action) {
 }
 
 function constructAdminUrl(controller, action){
-    var root = "http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com";
+    var root = "http://localhost/chinook";
     switch (controller) {
         case "album":
             switch (action) {

@@ -37,15 +37,16 @@ $ mkdir Chinook
 
 3. Start MySQL server and open: "http://localhost/phpmyadmin/server_import.php" in your browser
 
-4. Import the SQL file and execute. If successful, you should have a database called "chinook_abridged".
+4. Import the SQL "chinook_abridged.sql" file and execute (file is in this project). If successful, you should have a database called "chinook_abridged".
 ![alt text](./readme_images/php_import.PNG)
 
-5. Navigate to views/helper/url.js and change the "root" variable to "http://localhost/chinook".
+5. Navigate to views/helper/url.js and change the "root" variable to "http://localhost/chinook". and change the "root" variable in constructAdmin function to the same url.
+
+6. Open "http://localhost/chinook/" in your browser and you should have a working application!. If you want to visit the admin page you'll need to press the sign in button -> press "alt key" and mouse click 3 times. password is "admin", 
 
 ### Todos
 
- - Write MORE Tests
- - Add Night Mode
+ - Update API doc
 
 License
 ----
