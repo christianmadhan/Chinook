@@ -11,9 +11,9 @@
 <body>
     <nav>
         <a class="link clicked">Home</a>
-        <a class="link" href="http://localhost/apps/chinook/views/profile/profile.php">Profile</a>
-        <a class="link" href="http://localhost/apps/chinook/views/browse/browse.php">Browse</a>
-        <a class="link" href="http://localhost/apps/chinook/views/cart/cart.php">Cart</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com//views/profile/profile.php">Profile</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com//views/browse/browse.php">Browse</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com//views/cart/cart.php">Cart</a>
         <a class="link logout" id="logout">Logout</a>
     </nav>
     <main>

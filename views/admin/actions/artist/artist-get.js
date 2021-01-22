@@ -12,6 +12,7 @@ function getArtists(){
     
     $.ajax({
         type: "GET",
+        crossDomain: true,
         url: url,
         contentType: "application/json",
         statusCode: {
@@ -66,12 +67,16 @@ function getArtists(){
             
                     $('.deleteArtist').on('click', function(){
                         var elmId = $(this).find('i').attr('data-id');
+                        
                         var dataDelete = {
-                            "ArtistId": elmId,
+                            auth: sessionStorage.getItem('auth'),
+                            ArtistId: elmId,
                         }
+                        
                         var url = urlHelper.constructAdminUrl('artist', 'delete');
                         $.ajax({
                             type: "POST",
+                            crossDomain: true,
                             url: url,
                             data: JSON.stringify(dataDelete),
                             contentType: "application/json",

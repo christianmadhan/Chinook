@@ -1,41 +1,5 @@
 <?php
 
-/** 
- * @api {post} /controller/track/get-track.php Get one track
- * @apiName GetOneTrack
- * @apiGroup Track
- * @apiVersion 0.0.0
- * 
- * @apiHeaderExample {json} Header-Example:
- * {
- *   "Access-Control-Allow-Origin": "*"
- *   "Content-Type": "application/json; charset=UTF-8"
- * 
- * }
- * @apiParam {json} auth a valid auth token is required.
- * 
- *  * @apiParamExample {json} Request-Example:
-* {
-*    "TrackId": 123
-* }
- * 
- * @apiSuccess {json} response success response
- * @apiSuccessExample Example data on success: 
-* [
-*    {
-*        "Name": "Quadrant",
-*        "AlbumId": "13",
-*        "MediaTypeId": "1",
-*        "GenreId": "2",
-*        "Composer": "Billy Cobham",
-*        "Milliseconds": "261851",
-*        "Bytes": "8538199",
-*        "UnitPrice": "0.99"
-*    }
-* ]
- * @apiError TrackDoesNotExitError the trackid provided does not exit or is missing from post body.
- * 
- */
 
 // required headers
 header("Access-Control-Allow-Origin: *");

@@ -180,3 +180,23 @@ color: green;
     cursor: pointer;
   }
   /* Apple like login */
+
+  .popular {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .popular > .album {
+    margin: 30px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .popularHeadline {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    color: white;
+  }

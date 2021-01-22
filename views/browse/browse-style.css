@@ -34,6 +34,29 @@ span:hover {
 /* ------------------------------------- */
 
 
+/* Pagination */
+
+.pagination {
+  margin-top: 10px;
+}
+
+.pagination a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color:#f44336;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/* _-------------------------------------_ */
+
 .alert {
   padding: 20px;
   background-color: #f44336;
@@ -224,35 +247,4 @@ button {
 #message {
   border-radius: 20px;
   padding: 10px;
-}
-
-
-
-/* Media Query for Mobile Devices */ 
-@media (max-width: 480px) { 
-    nav {
-      display: none;
-    }
-} 
-        
-/* Media Query for low resolution  Tablets, Ipads */ 
-@media (min-width: 481px) and (max-width: 767px) { 
-  nav {
-    display: none;
-  }
-} 
-
-/* Media Query for Tablets Ipads portrait mode */ 
-@media (min-width: 768px) and (max-width: 1060px){ 
-  nav {
-    display: none;
-  }
-} 
-        
-
-/* Media Query for Laptops and Desktops */ 
-@media (min-width: 1060px) and (max-width: 1280px){ 
-  .mobileMenu {
-    display: none;
-  }
 } 

@@ -45,22 +45,16 @@ $stmt = $artist->GetAll();
 $num = $stmt->rowCount();
 
 if($num>0){
-  
     $artist_arr["artists"]=array();
-  
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-  
         $artist_item=array(
             "ArtistId" => $ArtistId,
             "Name" => $Name,
         );
-  
         array_push($artist_arr["artists"], $artist_item);
     }
-
     http_response_code(200);
-
     echo json_encode($artist_arr["artists"]);
 } else {
     http_response_code(404);

@@ -22,6 +22,7 @@ function getAlbumCreateContent() {
             e.preventDefault();
             if($('#createAlbumForm').valid()) {
                 var dataCreate = {
+                    auth: sessionStorage.getItem('auth'),
                     Title: $('#Title').val(),
                     ArtistId: $('#ArtistId').val(),
                 }
@@ -29,6 +30,7 @@ function getAlbumCreateContent() {
                 $.ajax({
                     type: "POST",
                     url: url,
+                    crossDomain: true,
                     data: JSON.stringify(dataCreate),
                     contentType: "application/json",
                     statusCode: {

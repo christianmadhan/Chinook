@@ -10,9 +10,9 @@ function getAlbums() {
     var url = urlHelper.constructUrl('album', 'get-all-albums');
      $.ajax({
         type: "GET",
+        crossDomain: true,
         url: url,
         contentType: "application/json",
-        //data: JSON.stringify(data),
         statusCode: {
             401: function() {
                 
@@ -71,11 +71,13 @@ function getAlbums() {
                     $('.deleteAlbum').on('click', function(){
                         var elmId = $(this).find('i').attr('data-id');
                         var dataDelete = {
-                            "AlbumId": elmId,
+                            auth: sessionStorage.getItem('auth'),
+                            AlbumId: elmId,
                         }
                         var url = urlHelper.constructAdminUrl('album', 'delete');
                         $.ajax({
                             type: "POST",
+                            crossDomain: true,
                             url: url,
                             data: JSON.stringify(dataDelete),
                             contentType: "application/json",

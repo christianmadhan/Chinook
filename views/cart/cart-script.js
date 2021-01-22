@@ -4,12 +4,31 @@ $( document ).ready(() => {
     if(sessionStorage.getItem('auth') == null){
         location.href = urlHelper.constructUrl();
     } else {
+        var authdata = {
+            "auth": sessionStorage.getItem('auth')
+        }
+        $.ajax({
+            type: "POST",
+            crossDomain: true,
+            url: urlHelper.constructUrl('auth', 'checkauth'),
+            data: JSON.stringify(authdata),
+            contentType: "application/json",
+            statusCode: {
+                401: function() {
+                    sessionStorage.clear();
+                    alert('Your session Has expired, please log in again.');
+                    location.href = urlHelper.constructUrl();
+                }
+            }
+        });
+        
         var url = urlHelper.constructUrl("cart", "get-cart");
         var data = {
             auth: sessionStorage.getItem("auth")
         }
         $.ajax({
            type: "POST",
+           crossDomain: true,
            url: url,
            data: JSON.stringify(data),
            contentType: "application/json",
@@ -65,8 +84,8 @@ $( document ).ready(() => {
 $('#buyBtn').on('click', function(){
     if($('#billingInfo').valid()){
         $('#purchasedModal').show();
-        var url = urlHelper.constructUrl('cart', 'purchase');
-        data = {
+        var url = urlHelper.constructUrl('cart', 'purchase-cart');
+        var data = {
             auth: sessionStorage.getItem("auth"),
             Total: $('#buyBtn').attr('total'),
             Address: $('#Address').val(),
@@ -77,6 +96,7 @@ $('#buyBtn').on('click', function(){
         }
         $.ajax({
            type: "PUT",
+           crossDomain: true,
            url: url,
            data: JSON.stringify(data),
            contentType: "application/json",

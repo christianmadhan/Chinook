@@ -35,8 +35,6 @@
  * 
  * 
  */
-
-if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     // required headers
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
@@ -85,9 +83,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     } else {
         http_response_code(500);
     }
-} else {
-    http_response_code(405);
-    $res = array("response" => "method not allowed");
-    echo json_encode($res);
-}
 ?>

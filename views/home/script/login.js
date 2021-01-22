@@ -3,6 +3,9 @@ import * as urlHelper from '../../helper/url.js';
 var num = 0;
 
 $( document ).ready(function() {
+    if(sessionStorage.getItem('auth')) {
+        location.href = urlHelper.constructUrl("redirect", "main");
+    }
     $('#loginForm').validate({
         errorClass: "error fail-alert",
         validClass: "valid success-alert",
@@ -58,6 +61,7 @@ $('#loginBtn').on('click', function(e) {
      $.ajax({
          type: "POST",
          url: url,
+         crossDomain: true,
          contentType: "application/json",
          data: JSON.stringify(data),
          statusCode: {
@@ -88,6 +92,7 @@ $('#adminLoginBtn').on('click', function(e) {
          console.log('hello?');
         $.ajax({
             type: "POST",
+            crossDomain: true,
             url: url,
             data: JSON.stringify(dataPass),
             success: function(response) {
@@ -135,6 +140,7 @@ $('#SignUpForm').on('click', function(e) {
       var url = urlHelper.constructUrl('auth', 'newuser');
       $.ajax({
           type: "POST",
+          crossDomain: true,
           url: url,
           contentType: "application/json",
           data: JSON.stringify(data),
@@ -142,14 +148,32 @@ $('#SignUpForm').on('click', function(e) {
              401: function() {
                $('#unauthorized').show();
              },
-             200: (response) => {
+             200: () => {
                  $('#unauthorized').hide();
-                 sessionStorage.setItem('auth', response);
-                 location.href = urlHelper.constructUrl("redirect", "main");
+              var urlLogin = urlHelper.constructUrl('auth', 'login');
+              var dataLogin = {
+                "Email": $('#signUpEmail').val(),
+                "Password": $('#singUpPassword').val(),
+                 }
+                $.ajax({
+                    type: "POST",
+                    url: urlLogin,
+                    crossDomain: true,
+                    contentType: "application/json",
+                    data: JSON.stringify(dataLogin),
+                    statusCode: {
+                       401: function() {
+                         $('#unauthorized').show();
+                       },
+                       200: (response) => {
+                           $('#unauthorized').hide();
+                           sessionStorage.setItem('auth', response);
+                           location.href = urlHelper.constructUrl("redirect", "main");
+                       }
+                     }
+                  });
              }
            }
-        }).done((response) => {
-        
         });
       
     }    

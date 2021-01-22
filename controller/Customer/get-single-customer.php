@@ -1,46 +1,5 @@
 <?php
 
-/** 
- * @api {post} /controller/customer/get-single-customer.php Get one customer
- * @apiName GetOneCustomer
- * @apiGroup Customer
- * @apiVersion 0.0.0
- * 
- * @apiHeaderExample {json} Header-Example:
- * {
- *   "Access-Control-Allow-Origin": "*"
- *   "Content-Type": "application/json; charset=UTF-8"
- * 
- * }
- * @apiParam {json} auth a valid auth token is required.
- * 
- *  * @apiParamExample {json} Request-Example:
- *     {
- *       auth: "example",
- *     }
- * 
- * @apiSuccess {json} response success response
- * @apiSuccessExample Example data on success: 
-* [
-*    {
-*        "CustomerId": "61",
-*        "FirstName": "christian",
-*        "LastName": "witt",
-*        "Password": "$2y$10$avg6prbpmOh7UJmior83f.dQdCDSCjad6vyaw1ao6S/nXPyuDmWAi",
-*        "Company": "voli aps",
-*        "Address": "katrinedal 16",
-*        "City": "Svinninge",
-*        "State": "Sjælland",
-*        "Country": "Danmark",
-*        "PostalCode": "4520",
-*        "Phone": "23957871",
-*        "Fax": "",
-*        "Email": "test@test.dk"
-*    }
-* ]
- * @apiError AuthEmptyError the auth token was empty/or not included. Minimum of <code>auth: "example"</code> is required in post body.
- * 
- */
 
 // required headers
 header("Access-Control-Allow-Origin: *");

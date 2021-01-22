@@ -64,8 +64,10 @@ class Auth {
                 $issuedAt = time();
                 $expiresAt =  $issuedAt + 10000;
                 $authState = "Authenticated";
+                $accessLevel = "admin";
+
               
-                $verrified = array('authState' => $authState, 'issuedAt' => $issuedAt, 'expiresAt' => $expiresAt);
+                $verrified = array('authState' => $authState, 'access' => $accessLevel, 'issuedAt' => $issuedAt, 'expiresAt' => $expiresAt);
             } 
          } else {
             $verrified['authState']  = "Unauthenticated";

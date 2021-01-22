@@ -1,46 +1,5 @@
 <?php
 
-/** 
- * @api {post} /controller/customer/update-customer.php Update customer
- * @apiName UpdateCustomer
- * @apiGroup Customer
- * @apiVersion 0.0.0
- * 
- * @apiHeaderExample {json} Header-Example:
- * {
- *   "Access-Control-Allow-Origin": "*"
- *   "Content-Type": "application/json; charset=UTF-8"
- * 
- * }
- * @apiParam {json} auth a valid auth token is required.
- * 
- *  * @apiParamExample {json} Request-Example:
-*{
-*    "auth": "example",
-*    "Firstname": "christian",
-*    "Lastname": "witt",
-*    "Company": "Mærsk",
-*    "Address": "Bakkesvinget",
-*    "City": "Århus",
-*    "State": "jylland",
-*    "Country": "denmark",
-*    "PostalCode": "2323",
-*    "Phone": "1231232323",
-*    "Fax": "12312544",
-*    "Email": "example@email.dk"
-*}
- * 
- * @apiSuccess {json} response success response
- * @apiSuccessExample Example data on success: 
-* [
-*    {
-*        "response": ""Customer updated"
-*    }
-* ]
- * @apiError AuthEmptyError the auth token was empty/or not included. Minimum of <code>auth: "example"</code> is required in post body.
- * 
- */
-
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");

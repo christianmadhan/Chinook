@@ -1,6 +1,7 @@
 <?php
 class Database{
   
+
     // specify your own database credentials
     private $host = "chinook.czxjnyektrbb.us-east-1.rds.amazonaws.com";
     private $db_name = "chinook_abridged";

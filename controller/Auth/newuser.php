@@ -61,32 +61,7 @@ if($emailAndPasswordValidated){
         $hashedPassword = password_hash($data['Password'], PASSWORD_DEFAULT);
         $invoiceId = $customer->createNewUser($Email,$hashedPassword);
         if(isset($invoiceId)){
-            // API URL
-            $url = 'http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com/controller/auth/login.php';
-
-            // Create a new cURL resource
-            $ch = curl_init($url);
-
-            // Setup request to send json via POST
-            $data = array(
-            'Email' => $data['Email'],
-            'Password' => $data['Password']
-            );
-            $payload = json_encode($data);
-
-            // Attach encoded JSON string to the POST fields
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-
-            // Set the content type to application/json
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-
-            // Return response instead of outputting
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            // Execute the POST request
-            $result = curl_exec($ch);
-            echo $result;
-            curl_close($ch);
+            http_response_code(200);
         } else {
             echo 'SOMETHING BAD HAPPENED :(';
         }

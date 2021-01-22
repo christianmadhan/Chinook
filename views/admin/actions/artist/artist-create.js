@@ -19,11 +19,13 @@ function getArtistCreateContent() {
             e.preventDefault();
             if($('#createArtistForm').valid()) {
                 var dataCreate = {
+                    auth: sessionStorage.getItem('auth'),
                     Name: $('#Name').val(),
                 }
                 var url = urlHelper.constructAdminUrl('artist', 'create');
                 $.ajax({
                     type: "POST",
+                    crossDomain: true,
                     url: url,
                     data: JSON.stringify(dataCreate),
                     contentType: "application/json",

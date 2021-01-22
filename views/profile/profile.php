@@ -11,10 +11,10 @@
 </head> 
 <body>
     <nav>
-        <a class="link" href="http://localhost/apps/chinook/views/main/main.php">Home</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com//views/main/main.php">Home</a>
         <a class="link clicked">Profile</a>
-        <a class="link" href="http://localhost/apps/chinook/views/browse/browse.php">Browse</a>
-        <a class="link" href="http://localhost/apps/chinook/views/cart/cart.php">Cart</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com//views/browse/browse.php">Browse</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com//views/cart/cart.php">Cart</a>
         <a class="link logout" id="logout">Logout</a>
 
     </nav>
@@ -50,7 +50,7 @@
             <div class="modal-content">
                 <i  id="closeBtn" class="far fa-times-circle close closeBtn"></i>
                 <div id="alertSuccess" class="alert success">
-                    Success! Track added to your cart.
+                    Success!.
                 </div>
             </div>
         </div>

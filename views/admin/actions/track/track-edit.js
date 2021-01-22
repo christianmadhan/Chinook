@@ -3,12 +3,14 @@ import * as urlHelper from '../../../helper/url.js';
 
 function getTrackEditContent(id) {
     var data = {
+        auth: sessionStorage.getItem('auth'),
         "TrackId": id,
     }
     var url = urlHelper.constructUrl('track', 'get-track');
     console.log(url);
     $.ajax({
         type: "POST",
+        crossDomain: true,
         url: url,
         data: JSON.stringify(data),
         contentType: "application/json",
@@ -59,10 +61,11 @@ function getTrackEditContent(id) {
                 </form> 
                 `);
 
-                $('#updateTrack').on('click', function(e){
+                $('#update').on('click', function(e){
                         e.preventDefault();
                         if($('#updateTrackForm').valid()) {
                             var dataUpdate = {
+                                auth: sessionStorage.getItem('auth'),
                                 TrackId: id,
                                 Name: $('#Name').val(),
                                 AlbumId: $('#AlbumId').val(),
@@ -77,6 +80,7 @@ function getTrackEditContent(id) {
 
                             $.ajax({
                                 type: "POST",
+                                crossDomain: true,
                                 url: url,
                                 data: JSON.stringify(dataUpdate),
                                 contentType: "application/json",
@@ -89,7 +93,7 @@ function getTrackEditContent(id) {
                                         $('#alertSuccessModal').show();
                                         $('#EditModal').hide();
                                         setTimeout(() => {
-                                            location.reload();
+                                           location.reload();
                                         }, 800);
                                     }
                                 }

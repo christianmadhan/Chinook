@@ -1,5 +1,5 @@
 function constructUrl(controller, action) {
-    var root = "http://localhost/apps/chinook";
+    var root = "http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com";
     switch (controller) {
         case "album":
             switch (action) {
@@ -26,6 +26,8 @@ function constructUrl(controller, action) {
                     return root + "/controller/auth/newuser.php";
                 case "changepassword":
                     return root + "/controller/auth/change-password.php";
+                case "checkauth":
+                    return root + "/controller/auth/checkauth.php";
                 default:
                     return root;
             }  
@@ -73,7 +75,7 @@ function constructUrl(controller, action) {
 }
 
 function constructAdminUrl(controller, action){
-    var root = "http://localhost/apps/chinook";
+    var root = "http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com";
     switch (controller) {
         case "album":
             switch (action) {

@@ -2,12 +2,14 @@ import * as urlHelper from '../../../helper/url.js';
 
 function getArtistEditContent(id) {
    var data = {
-        "ArtistId": id,
+        auth: sessionStorage.getItem('auth'),
+        ArtistId: id,
     }
     var url = urlHelper.constructAdminUrl('artist', 'get');
 
     $.ajax({
         type: "POST",
+        crossDomain: true,
         url: url,
         data: JSON.stringify(data),
         contentType: "application/json",
@@ -34,6 +36,7 @@ function getArtistEditContent(id) {
                         e.preventDefault();
                         if($('#updateArtistForm').valid()) {
                             var dataUpdate = {
+                                auth: sessionStorage.getItem('auth'),
                                 ArtistId: id,
                                 Name: $('#Name').val(),
                             }
@@ -41,6 +44,7 @@ function getArtistEditContent(id) {
 
                             $.ajax({
                                 type: "POST",
+                                crossDomain: true,
                                 url: url,
                                 data: JSON.stringify(dataUpdate),
                                 contentType: "application/json",

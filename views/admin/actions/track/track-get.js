@@ -11,6 +11,7 @@ function getTracks() {
     var url = urlHelper.constructUrl('track', 'get-all-tracks');
     $.ajax({
         type: "GET",
+        crossDomain: true,
         url: url,
         contentType: "application/json",
         //data: JSON.stringify(data),
@@ -84,11 +85,13 @@ function getTracks() {
                 $('.deleteTrack').on('click', function(){
                     var elmId = $(this).find('i').attr('data-track');
                     var dataDelete = {
+                        auth: sessionStorage.getItem('auth'),
                         "trackId": elmId,
                     }
                     var url = urlHelper.constructAdminUrl('track', 'delete');
                     $.ajax({
                         type: "POST",
+                        crossDomain: true,
                         url: url,
                         data: JSON.stringify(dataDelete),
                         contentType: "application/json",

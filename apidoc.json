@@ -3,5 +3,5 @@
     "version": "1.0.0",
     "description": "Music Store API hosted to AWS Elastic Beanstalk",
     "title": "API",
-    "url" : "http://chinook-env.us-east-1.elasticbeanstalk.com"
+    "url" : "http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com"
   }

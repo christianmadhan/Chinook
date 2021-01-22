@@ -14,10 +14,10 @@
     <i class="fas fa-bars fa-2x"></i>
     </div>
     <nav>
-        <a class="link" href="http://localhost/apps/chinook/views/main/main.php">Home</a>
-        <a class="link" href="http://localhost/apps/chinook/views/profile/profile.php">Profile</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com/views/main/main.php">Home</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com/views/profile/profile.php">Profile</a>
         <a class="link clicked">Browse</a>
-        <a class="link" href="http://localhost/apps/chinook/views/cart/cart.php">Cart</a>
+        <a class="link" href="http://chinook-deploy-dev.us-east-1.elasticbeanstalk.com/views/cart/cart.php">Cart</a>
         <a class="link logout" id="logout">Logout</a>
     </nav>
     <main>
@@ -55,11 +55,10 @@
         <div class="loader" style="display:none;" id="loader">
         <img src="../home/img/spinner.gif">
         </div>
-        
         <div class="container" id="tracks" style="display:none;">
-        <input type="text" id="myInput" onkeyup="myFunction()"  placeholder="Search for names.." title="Type in a name">
         </div>
-
+        <div class="pagination" id="pag">
+        </div>
         <!-- The Modal -->
         <div id="purchasedModal" class="modal" style="display:none;">
             <!-- Modal content -->
@@ -76,7 +75,6 @@
 <footer>
     
 </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
     <script src="./browse-script.js" type="module"></script>
 </body>

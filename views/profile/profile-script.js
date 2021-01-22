@@ -12,6 +12,7 @@ $( document ).ready(() => {
         }
         $.ajax({
            type: "POST",
+           crossDomain: true,
            url: url,
            data: JSON.stringify(data),
            contentType: "application/json",
@@ -64,6 +65,7 @@ $('#changePassSubmitBtn').on('click', function(){
     }
     $.ajax({
         type: "POST",
+        crossDomain: true,
         url: url,
         data: JSON.stringify(data),
         contentType: "application/json",
@@ -104,6 +106,7 @@ $('#submitBtn').on('click', function() {
         };
         $.ajax({
             type: "POST",
+            crossDomain: true,
             url: url,
             data: JSON.stringify(data),
             contentType: "application/json",

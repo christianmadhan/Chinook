@@ -3,11 +3,13 @@ import * as urlHelper from '../../../helper/url.js';
 
 function getAlbumEditContent(id) {
     var data = {
-        "AlbumId": id,
+        auth: sessionStorage.getItem('auth'),
+        AlbumId: id,
     }
     var url = urlHelper.constructAdminUrl('album', 'get');
     $.ajax({
         type: "POST",
+        crossDomain: true,
         url: url,
         data: JSON.stringify(data),
         contentType: "application/json",
@@ -38,6 +40,7 @@ function getAlbumEditContent(id) {
                         e.preventDefault();
                         if($('#updateAlbumForm').valid()) {
                             var dataUpdate = {
+                                auth: sessionStorage.getItem('auth'),
                                 AlbumId: id,
                                 Title: $('#Title').val(),
                                 ArtistId: $('#ArtistId').val(),
@@ -45,6 +48,7 @@ function getAlbumEditContent(id) {
                             var url = urlHelper.constructAdminUrl('album', 'update');
                             $.ajax({
                                 type: "POST",
+                                crossDomain: true,
                                 url: url,
                                 data: JSON.stringify(dataUpdate),
                                 contentType: "application/json",

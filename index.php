@@ -90,12 +90,28 @@
         To get started, create a new user or sign in!
     </p>
 </section>
+
 <hr>
 
+<section class="popularHeadline">
+<h1>Popular Albums</h1>
+</section>
+
+<section class="popular">
+    <div class="album">
+    <img src="./views/home/img/acdc.jpg" height="300" width="300">
+    </div>
+    <div class="album">
+    <img src="./views/home/img/metalica.jpg" height="300" width="300">
+    </div>
+    <div class="album">
+    <img src="./views/home/img/miles.jpg" height="300" width="300">
+    </div>
+</section>
 
 </main>
 <footer>
-    &copy;  Christian Witt
+    &copy;  Christian Witt  | .-*-. | Version 1.2.0
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js" crossorigin="anonymous"></script> 
     <script src="./views/home/script/login.js" type="module"></script>

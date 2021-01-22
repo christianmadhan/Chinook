@@ -47,6 +47,7 @@ function getTrackCreateContent() {
             e.preventDefault();
             if($('#createTrackForm').valid()) {
                 var dataUpdate = {
+                    auth: sessionStorage.getItem('auth'),
                     Name: $('#Name').val(),
                     AlbumId: $('#AlbumId').val(),
                     MediaTypeId: $('#MediaTypeId').val(),
@@ -59,6 +60,7 @@ function getTrackCreateContent() {
                 var url = urlHelper.constructAdminUrl('track', 'create');
                 $.ajax({
                     type: "POST",
+                    crossDomain: true,
                     url: url,
                     data: JSON.stringify(dataUpdate),
                     contentType: "application/json",
