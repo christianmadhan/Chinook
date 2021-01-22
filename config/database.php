@@ -3,10 +3,10 @@ class Database{
   
 
     // specify your own database credentials
-    private $host = "chinook.czxjnyektrbb.us-east-1.rds.amazonaws.com";
+    private $host = "localhost";
     private $db_name = "chinook_abridged";
-    private $username = "admin";
-    private $password = "guledyr14";
+    private $username = "root";
+    private $password = "";
     public  $conn;
   
     // Wraps the connection in a try catch. and returns the connection to be used.
